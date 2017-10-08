@@ -1,6 +1,6 @@
-com\jrh\userdata\Application.class
-com\jrh\userdata\controller\impl\UserControllerImpl.class
-com\jrh\userdata\service\UserService.class
-com\jrh\userdata\model\User.class
-com\jrh\userdata\controller\UserController.class
-com\jrh\userdata\service\impl\UserServiceImpl.class
+com/jrh/userdata/service/UserService.class
+com/jrh/userdata/controller/UserController.class
+com/jrh/userdata/service/impl/UserServiceImpl.class
+com/jrh/userdata/model/User.class
+com/jrh/userdata/Application.class
+com/jrh/userdata/controller/impl/UserControllerImpl.class
