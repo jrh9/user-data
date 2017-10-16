@@ -8,6 +8,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
@@ -17,41 +18,8 @@ public class UserService {
     private static List<User> users = new ArrayList<>();
 
     static {
-        //Initialize Data
-        Post course1 = new Post("Post1", "Spring", "10 Steps", Arrays
-                .asList("Learn Maven", "Import Project", "First Example",
-                        "Second Example"));
-        Post course2 = new Post("Post2", "Spring MVC", "10 Examples",
-                Arrays.asList("Learn Maven", "Import Project", "First Example",
-                        "Second Example"));
-        Post course3 = new Post("Post3", "Spring Boot", "6K Users",
-                Arrays.asList("Learn Maven", "Learn Spring",
-                        "Learn Spring MVC", "First Example", "Second Example"));
-        Post course4 = new Post("Post4", "Maven",
-                "Most popular maven course on internet!", Arrays.asList(
-                "Pom.xml", "Build Life Cycle", "Parent POM",
-                "Importing into Eclipse"));
-
-        User s1 = new User("s1", "Ranga Karanam",
-                1, new ArrayList<>(Arrays
-                .asList(course1, course2, course3, course4)));
-
-        User s2 = new User("s2", "Satish T",
-                2, new ArrayList<>(Arrays
-                .asList(course1, course2, course3, course4)));
-
-        User s3 = new User("jh", "Satish T",
-                3,  new ArrayList<>(Arrays
-                .asList(course1, course2, course3, course4)));
-
-        User s4 = new User("jh2", "Satish T",
-                4, new ArrayList<>(Arrays
-                .asList(course1, course2, course3, course4)));
-
-        users.add(s1);
-        users.add(s2);
-        users.add(s3);
-        users.add(s4);
+        //Initialize Users and Posts
+        initialize();
     }
 
     public List<User> retrieveAllUsers() {
@@ -88,9 +56,9 @@ public class UserService {
             return null;
         }
 
-        for (Post course : user.getPosts()) {
-            if (course.getId().equals(courseId)) {
-                return course;
+        for (Post post : user.getPosts()) {
+            if (post.getId().equals(courseId)) {
+                return post;
             }
         }
 
@@ -99,22 +67,64 @@ public class UserService {
 
     private SecureRandom random = new SecureRandom();
 
-    public Post addPost(String userId, Post course) {
+    public Post addPost(String userId, Post post) {
         User user = retrieveUser(userId);
 
         if (user == null) {
             return null;
         }
 
-        String randomId = new BigInteger(130, random).toString(32);
-        course.setId(randomId);
+        String randomId = UUID.randomUUID().toString();
+        post.setId(randomId);
 
-        user.getPosts().add(course);
+        user.getPosts().add(post);
 
-        return course;
+        return post;
     }
 
     public List<User> getUsers() {
         return users;
+    }
+
+    private static void initialize() {
+        String randomId = UUID.randomUUID().toString();
+
+        Post post1 = new Post(randomId, "Test Post 1", "<insert_text1_here>",
+                Arrays.asList("child-post-id-1", "child-post-id-2"));
+
+        randomId = UUID.randomUUID().toString();
+        Post post2 = new Post(randomId, "Testing Post 2", "<insert_text2_here>",
+                Arrays.asList("child-post-1", "child-post-2", "child-post-3"));
+
+
+        randomId = UUID.randomUUID().toString();
+        Post post3 = new Post(randomId, "Test Post 3", "insert-text3-here",
+                Arrays.asList());
+
+        randomId = UUID.randomUUID().toString();
+        Post post4 = new Post(randomId, "Test Post 4", "<text>",
+                Arrays.asList("id-1", "id-2"));
+
+        User s1 = new User("s1", "Ranga Karanam",
+                1, new ArrayList<>(Arrays
+                .asList(post1)));
+
+        User s2 = new User("s2", "Satish T",
+                2, new ArrayList<>(Arrays
+                .asList(post2, post3)));
+
+        User s3 = new User("jh", "Satish T",
+                3,  new ArrayList<>(Arrays
+                .asList(post4)));
+
+        User s4 = new User("jh2", "Satish T",
+                4, new ArrayList<>(Arrays
+                .asList()));
+
+        users.add(s1);
+        users.add(s2);
+        users.add(s3);
+        users.add(s4);
+
     }
 }

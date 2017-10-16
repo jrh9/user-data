@@ -6,19 +6,19 @@ import java.util.List;
 public class Post {
     private String id;
     private String name;
-    private String description;
-    private List<String> steps;
+    private String text;
+    private List<String> children;
 
     public Post() {
 
     }
 
-    public Post(String id, String name, String description, List<String> steps) {
+    public Post(String id, String name, String text, List<String> children) {
         super();
         this.id = id;
         this.name = name;
-        this.description = description;
-        this.steps = steps;
+        this.text = text;
+        this.children = children;
     }
 
     public String getId() {
@@ -29,23 +29,23 @@ public class Post {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getText() {
+        return text;
     }
 
     public String getName() {
         return name;
     }
 
-    public List<String> getSteps() {
-        return steps;
+    public List<String> getChildren() {
+        return children;
     }
 
     @Override
     public String toString() {
         return String.format(
                 "Post [id=%s, name=%s, description=%s, steps=%s]", id, name,
-                description, steps);
+                text, children);
     }
 
     @Override

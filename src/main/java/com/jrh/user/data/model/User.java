@@ -4,7 +4,7 @@ import java.util.List;
 
 public class User {
     private String id;
-    private String name;
+    private String username;
     private int karma;
     private List<Post> posts;
 
@@ -12,7 +12,7 @@ public class User {
                    List<Post> posts) {
         super();
         this.id = id;
-        this.name = name;
+        this.username = name;
         this.karma = karma;
         this.posts = posts;
     }
@@ -25,13 +25,17 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) { this.name = name; }
+    public void setUsername(String name) {
+        this.username = name;
+    }
 
-    public int getKarma() { return karma; }
+    public int getKarma() {
+        return karma;
+    }
 
     public void setKarma(int karma) {
         this.karma = karma;
@@ -41,7 +45,7 @@ public class User {
         return posts;
     }
 
-    public void setPost(List<Post> posts) {
+    public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
 
@@ -49,7 +53,7 @@ public class User {
     @Override
     public String toString() {
         return String.format(
-                "Student [id=%s, name=%s, description=%s, Posts=%s]", id,
-                name, karma, posts);
+                "Student [id=%s, username=%s, karma=%s, Posts=%s]", id,
+                username, karma, posts);
     }
 }
