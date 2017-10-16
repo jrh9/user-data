@@ -1,79 +1,55 @@
 package com.jrh.user.data.model;
 
-import com.jrh.user.data.dto.CreateUserBean;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import javax.persistence.Id;
+import java.util.List;
 
 public class User {
+    private String id;
+    private String name;
+    private int karma;
+    private List<Post> posts;
 
-    @Id
-    private int id;
-
-    private String username;
-
-    private String password;
-
-    private String email;
-
-    public User(int id, String username, String password, String email) {
-
+    public User(String id, String name, int karma,
+                   List<Post> posts) {
+        super();
         this.id = id;
-        this.password = password;
-        this.username = password;
-        this.email = email;
+        this.name = name;
+        this.karma = karma;
+        this.posts = posts;
     }
 
-    public User(CreateUserBean bean) {
-        this.id = bean.getId();
-        this.password = bean.getPassword();
-        this.username = bean.getUsername();
-        this.email = bean.getPassword();
+    public String getId() {
+        return id;
     }
 
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getUsername() {
-        return this.username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String name) {
-        this.username = name;
+    public void setName(String name) { this.name = name; }
+
+    public int getKarma() { return karma; }
+
+    public void setKarma(int karma) {
+        this.karma = karma;
     }
 
-    public String getEmail() {
-        return this.email;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPost(List<Post> posts) {
+        this.posts = posts;
     }
 
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (int) (id ^ (id >>> 32));
-        return result;
-    }
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + username +
-                ", email=" + email + "]";
+        return String.format(
+                "Student [id=%s, name=%s, description=%s, Posts=%s]", id,
+                name, karma, posts);
     }
-
 }
