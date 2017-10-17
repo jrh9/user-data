@@ -123,23 +123,23 @@ URL:
 ## How to Run
 
 * Make sure you are using JDK 1.8 and Maven 3.x
-* Clone this repository
+* Clone this repository (create SSH key first and link account)
 
 ````bash
-$ git clone <URL>
+$ git clone git@github.com:jrh9/user-data.git
 ````
 
-* Ensure system setup is correct
+Ensure system setup is correct
 ````bash
 $ mvn clean package
 ````
 
-* Compile the program
+Compile the program
 ````bash
 $ mvn clean install
 ````
 
-* On successful build, run the service locally
+On successful build, run the service locally
 ````bash
 $ java -jar ./target/<compiled_project_name>.jar
 ````
