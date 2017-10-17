@@ -52,6 +52,7 @@ URL:
 ```
 TO-DO: Add flow diagram -- ![POST /user](misc/POST_user.png "POST /user diagram")
 
+(TO-DO: Implement error handling)
 - Returns a 201 CREATED if the user is successfully created
 - Returns a 400 BAD REQUEST if the user already exists (err code: 1800)
 - Returns a 400 BAD REQUEST if the user JSON input is invalid (err code: 1802)
@@ -69,7 +70,7 @@ Query params currently supported are:
 
 TO-DO: Add flow diagram --![GET /user](misc/GET_user.png "GET /user diagram")
 
-- Returns a 200 OK with 0 to many users matching the criteria
+- Returns a 200 OK with 0 to many users matching the criteria (TO-DO: Return response object?)
 
 
 ### GET /user/{username}
@@ -80,10 +81,10 @@ URL:
 
 TO-DO: Add flow diagram --![GET /user/{user-id}](misc/GET_user_by_id.png "GET /user/{user-id} diagram")
 
-- Returns a 200 OK with either an empty object (if user does not exist) or the user itself
+- Returns a 200 OK with either an empty object (if user does not exist) or the user itself (TO-DO: Return response object?)
 
 
-### PUT /user
+### PUT /user (TO-DO: Implement PUT endpoint)
 
 This method is utilized to update a user's username, karma, and/or posts
 
@@ -100,10 +101,10 @@ URL:
 
 TO-DO: Add flow diagram -- ![PUT /user](misc/PUT_user.png "PUT /user diagram")
 
-- Returns a 200 OK with the updated user
-- Returns a 400 BAD REQUEST if the user(s) does not exist (err code: 1802)
+- Returns a 200 OK with the updated user (TO-DO: Return response object?)
+- Returns a 400 BAD REQUEST if the user(s) does not exist (err code: 1802) (TO-DO: Implement)
 
-### DELETE /user/{user-id}
+### DELETE /user/{user-id} (TO-DO: Implement)
 
 This method is utilized to delete specific user(s) using its ID (userId)
 

@@ -35,7 +35,7 @@ public class UserService {
         return newUser;
     }
 
-    public User retrieveUser(String username) {
+    public User getUserByName(String username) {
         for (User user : users) {
             if (user.getUsername().equals(username)) {
                 return user;
@@ -44,7 +44,7 @@ public class UserService {
         return null;
     }
 
-    public User getUser(int id) {
+    public User getUserById(int id) {
         for (User user : users) {
             if (user.getId() == id) {
                 return user;
@@ -57,10 +57,10 @@ public class UserService {
         return posts;
     }
 
-    public List<Post> retrievePosts(String userId) {
-        User user = retrieveUser(userId);
+    public List<Post> getPostsByName(String username) {
+        User user = getUserByName(username);
 
-        if(userId.equalsIgnoreCase("User1")){
+        if(username.equalsIgnoreCase("User1")){
             throw new RuntimeException("Something went wrong");
         }
 
@@ -73,8 +73,8 @@ public class UserService {
 
     private SecureRandom random = new SecureRandom();
 
-    public Post addPost(String userId, Post post) {
-        User user = retrieveUser(userId);
+    public Post addPost(String username, Post post) {
+        User user = getUserByName(username);
 
         if (user == null) {
             return null;
