@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+
 
 @RestController
 public class Controller {
@@ -23,12 +26,33 @@ public class Controller {
     private UserService service;
 
     @GetMapping("/users")
-    public List<User> getPosts() {
+    public List<User> getUsers() {
         return service.getUsers();
     }
 
+
+    @PostMapping("/users")
+    public ResponseEntity<Void> createUser(
+            @RequestBody String username) {
+
+        User user = service.addUser(username);
+
+        if (user == null)
+            return ResponseEntity.noContent().build();
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
+                "/{id}").buildAndExpand(user.getId()).toUri();
+
+        return ResponseEntity.created(location).build();
+    }
+
+    @GetMapping("/posts")
+    public List<Post> getPosts() {
+        return service.getPosts();
+    }
+
     @GetMapping("/users/{username}/posts")
-    public List<Post> retrievePostsForStudent(@PathVariable String username) {
+    public List<Post> retrievePostsByUsername(@PathVariable String username) {
         return service.retrievePosts(username);
     }
 
@@ -46,12 +70,5 @@ public class Controller {
 
         return ResponseEntity.created(location).build();
     }
-
-    @GetMapping("/users/{userId}/Posts/{PostId}")
-    public Post retrieveDetailsForPost(@PathVariable String userId,
-                                           @PathVariable String PostId) {
-        return service.retrievePost(userId, PostId);
-    }
-
 }
 

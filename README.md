@@ -119,15 +119,20 @@ URL:
 - Returns a 500 INTERNAL SERVER ERROR if an unexpected error has occurred (err code: 1897)
 - Returns a 400 BAD REQUEST for malformed (unparseable) JSON requests (err code: 1899)
 
-### Service
+
+### How to run
+
+Build (Maven)
+````bash
+$ git clone <URL>
+$ cd /into/project/directory
+$ mvn clean install
+````
 
 ````bash
 $ java -jar ./target/<compiled_project_name>.jar
 ````
 
-### Maven Tasks
-Build and test
-````bash
-$ mvn clean install
-````
+Hit endpoint via Postman app
+http://localhost:8080/<END_POINT>
 

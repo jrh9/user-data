@@ -16,6 +16,8 @@ import org.springframework.stereotype.Component;
 public class UserService {
 
     private static List<User> users = new ArrayList<>();
+    private static List<Post> posts = new ArrayList<>();
+
 
     static {
         //Initialize Users and Posts
@@ -51,6 +53,10 @@ public class UserService {
         return null;
     }
 
+    public List<Post> getPosts() {
+        return posts;
+    }
+
     public List<Post> retrievePosts(String userId) {
         User user = retrieveUser(userId);
 
@@ -63,22 +69,6 @@ public class UserService {
         }
 
         return user.getPosts();
-    }
-
-    public Post retrievePost(String userId, String courseId) {
-        User user = retrieveUser(userId);
-
-        if (user == null) {
-            return null;
-        }
-
-        for (Post post : user.getPosts()) {
-            if (post.getId().equals(courseId)) {
-                return post;
-            }
-        }
-
-        return null;
     }
 
     private SecureRandom random = new SecureRandom();
@@ -121,22 +111,28 @@ public class UserService {
         Post post4 = new Post(randomId, "Test Post 4", "<text>",
                 Arrays.asList("id-1", "id-2"));
 
-        User s1 = new User(1, "Ranga Karanam", 1,
+        posts.add(post1);
+        posts.add(post2);
+        posts.add(post3);
+        posts.add(post4);
+
+        User user1 = new User(1, "John Doe", 1,
                 new ArrayList<>(Arrays.asList(post1)));
 
-        User s2 = new User(2, "Satish T", 2,
+        User user2 = new User(2, "Jane Doe", 2,
                 new ArrayList<>(Arrays.asList(post2, post3)));
 
-        User s3 = new User(3, "Satish T",3,
+        User user3 = new User(3, "Test Ing",3,
                 new ArrayList<>(Arrays.asList(post4)));
 
-        User s4 = new User(4, "Satish T", 4,
+        User user4 = new User(4, "Ran Dom", 4,
                 new ArrayList<>(Arrays.asList()));
 
-        users.add(s1);
-        users.add(s2);
-        users.add(s3);
-        users.add(s4);
+        users.add(user1);
+        users.add(user2);
+        users.add(user3);
+        users.add(user4);
+
 
     }
 }
