@@ -26,9 +26,25 @@ public class UserService {
         return users;
     }
 
-    public User retrieveUser(String userId) {
+    public User addUser(String username) {
+        int idToAssign = users.size();
+        User newUser = new User(idToAssign, username, 0, new ArrayList<Post>());
+
+        return newUser;
+    }
+
+    public User retrieveUser(String username) {
         for (User user : users) {
-            if (user.getId().equals(userId)) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public User getUser(int id) {
+        for (User user : users) {
+            if (user.getId() == id) {
                 return user;
             }
         }
@@ -105,21 +121,17 @@ public class UserService {
         Post post4 = new Post(randomId, "Test Post 4", "<text>",
                 Arrays.asList("id-1", "id-2"));
 
-        User s1 = new User("s1", "Ranga Karanam",
-                1, new ArrayList<>(Arrays
-                .asList(post1)));
+        User s1 = new User(1, "Ranga Karanam", 1,
+                new ArrayList<>(Arrays.asList(post1)));
 
-        User s2 = new User("s2", "Satish T",
-                2, new ArrayList<>(Arrays
-                .asList(post2, post3)));
+        User s2 = new User(2, "Satish T", 2,
+                new ArrayList<>(Arrays.asList(post2, post3)));
 
-        User s3 = new User("jh", "Satish T",
-                3,  new ArrayList<>(Arrays
-                .asList(post4)));
+        User s3 = new User(3, "Satish T",3,
+                new ArrayList<>(Arrays.asList(post4)));
 
-        User s4 = new User("jh2", "Satish T",
-                4, new ArrayList<>(Arrays
-                .asList()));
+        User s4 = new User(4, "Satish T", 4,
+                new ArrayList<>(Arrays.asList()));
 
         users.add(s1);
         users.add(s2);

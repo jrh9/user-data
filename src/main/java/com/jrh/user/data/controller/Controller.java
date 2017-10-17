@@ -27,22 +27,22 @@ public class Controller {
         return service.getUsers();
     }
 
-    @GetMapping("/users/{studentId}/Posts")
-    public List<Post> retrievePostsForStudent(@PathVariable String userId) {
-        return service.retrievePosts(userId);
+    @GetMapping("/users/{username}/posts")
+    public List<Post> retrievePostsForStudent(@PathVariable String username) {
+        return service.retrievePosts(username);
     }
 
-    @PostMapping("/users/{userId}/Posts")
+    @PostMapping("/users/{username}/posts")
     public ResponseEntity<Void> registerStudentForPost(
-            @PathVariable String studentId, @RequestBody Post newPost) {
+            @PathVariable String username, @RequestBody Post newPost) {
 
-        Post Post = service.addPost(studentId, newPost);
+        Post post = service.addPost(username, newPost);
 
-        if (Post == null)
+        if (post == null)
             return ResponseEntity.noContent().build();
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
-                "/{id}").buildAndExpand(Post.getId()).toUri();
+                "/{id}").buildAndExpand(post.getId()).toUri();
 
         return ResponseEntity.created(location).build();
     }
