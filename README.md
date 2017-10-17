@@ -120,19 +120,33 @@ URL:
 - Returns a 400 BAD REQUEST for malformed (unparseable) JSON requests (err code: 1899)
 
 
-### How to run
+## How to Run
 
-Build (Maven)
+* Make sure you are using JDK 1.8 and Maven 3.x
+* Clone this repository
+
 ````bash
 $ git clone <URL>
-$ cd /into/project/directory
+````
+
+* Ensure system setup is correct
+````bash
+$ mvn clean package
+````
+
+* Compile the program
+````bash
 $ mvn clean install
 ````
 
+* On successful build, run the service locally
 ````bash
 $ java -jar ./target/<compiled_project_name>.jar
 ````
 
-Hit endpoint via Postman app
-http://localhost:8080/<END_POINT>
+### Ensure data can be retrieved by hitting endpoint (via Postman)
+- Change HTTP method to GET
+- Enter URL: http://localhost:8080/users for user data
+- Enter URL: http://localhost:8080/posts for post data
+
 
