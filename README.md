@@ -25,7 +25,7 @@ This microservice contains logic for users and posts
 
 
 
-### Sample JSON Manufacturer
+### Sample JSON User
 
 ```
 {
