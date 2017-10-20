@@ -4,29 +4,28 @@ package com.jrh.user.data.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Post {
+public class Comment extends Post {
     private String id;
-    private String name;
+    private String submittedBy;
     private String text;
-    private List<Comment> comments;
+    private List<Comment> children;
 
-    public Post() {
+    public Comment() {
 
     }
 
-    public Post(String id, String name, String text, List<Comment> comments) {
-        super();
+    public Comment(String id, String submittedBy, String text, List<Comment> children) {
         this.id = id;
-        this.name = name;
+        this.submittedBy = submittedBy;
         this.text = text;
-        this.comments = comments;
+        this.children = children;
     }
 
-    public Post(String id) {
+    public Comment(String id) {
         this.id = id;
-        this.name = name;
+        this.submittedBy = submittedBy;
         this.text = text;
-        this.comments = new ArrayList<Comment>();
+        this.children = new ArrayList<Comment>();
     }
 
     public String getId() {
@@ -41,19 +40,19 @@ public class Post {
         return text;
     }
 
-    public String getName() {
-        return name;
+    public String getsubmittedBy() {
+        return submittedBy;
     }
 
     public List<Comment> getChildren() {
-        return comments;
+        return children;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Post [id=%s, name=%s, description=%s, steps=%s]", id, name,
-                text, comments);
+                "Comment [id=%s, submittedBy=%s, description=%s, steps=%s]", id, submittedBy,
+                text, children);
     }
 
     @Override
@@ -72,11 +71,11 @@ public class Post {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Post other = (Post) obj;
+        Comment other = (Comment) obj;
         if (id == null) {
-            if (other.id != null)
+            if (other.getId() != null)
                 return false;
-        } else if (!id.equals(other.id))
+        } else if (!id.equals(other.getId()))
             return false;
         return true;
     }
