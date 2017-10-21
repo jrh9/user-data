@@ -24,7 +24,7 @@ public class PostService {
 
     public Post getPost(String id) {
         for (Post Post : posts) {
-            if (Post.getName().equals(id)) {
+            if (Post.getTitle().equals(id)) {
                 return Post;
             }
         }

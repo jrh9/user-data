@@ -57,15 +57,12 @@ public class UserService {
         return posts;
     }
 
-    public List<Post> getPostsByName(String username) {
+    public List<Post> getPostsByUsername(String username) {
+
         User user = getUserByName(username);
 
-        if(username.equalsIgnoreCase("User1")){
-            throw new RuntimeException("Something went wrong");
-        }
-
         if (user == null) {
-            return null;
+            throw new RuntimeException("User not found");
         }
 
         return user.getPosts();

@@ -53,7 +53,7 @@ public class Controller {
 
     @GetMapping("/users/{username}/posts")
     public List<Post> retrievePostsByUsername(@PathVariable String username) {
-        return service.retrievePosts(username);
+        return service.getPostsByUsername(username);
     }
 
     @PostMapping("/users/{username}/posts")
