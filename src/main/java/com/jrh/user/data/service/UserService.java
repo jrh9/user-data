@@ -93,6 +93,7 @@ public class UserService {
     }
 
     private static void initialize() {
+        /*
         String randomId = UUID.randomUUID().toString();
 
         Post post1 = new Post(randomId, "Test Post 1", "<insert_text1_here>",
@@ -133,6 +134,7 @@ public class UserService {
         users.add(user3);
         users.add(user4);
 
+        */
 
     }
 }

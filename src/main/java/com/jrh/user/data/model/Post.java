@@ -6,26 +6,28 @@ import java.util.List;
 
 public class Post {
     private String id;
-    private String name;
+    private String title;
     private String text;
+    private String submittedBy;
     private List<Comment> comments;
 
     public Post() {
 
     }
 
-    public Post(String id, String name, String text, List<Comment> comments) {
-        super();
+    public Post(String id, String title, String text, String submittedBy, List<Comment> comments) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.text = text;
+        this.submittedBy = submittedBy;
         this.comments = comments;
     }
 
     public Post(String id) {
         this.id = id;
-        this.name = name;
-        this.text = text;
+        this.title = "";
+        this.text = "";
+        this.submittedBy = "";
         this.comments = new ArrayList<Comment>();
     }
 
@@ -41,18 +43,30 @@ public class Post {
         return text;
     }
 
-    public String getName() {
-        return name;
+    public  void setText(String text) {
+        this.text = text;
     }
 
-    public List<Comment> getChildren() {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<Comment> getComments() {
         return comments;
+    }
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Post [id=%s, name=%s, description=%s, steps=%s]", id, name,
+                "Post [id=%s, title=%s, description=%s, steps=%s]", id, title,
                 text, comments);
     }
 
