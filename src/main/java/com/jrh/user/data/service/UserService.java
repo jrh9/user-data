@@ -70,15 +70,17 @@ public class UserService {
 
     private SecureRandom random = new SecureRandom();
 
-    public Post addPost(String username, Post post) {
-        User user = getUserByName(username);
+    public Post addPost(String submittedBy, Post post) {
+        User user = getUserByName(submittedBy);
 
         if (user == null) {
             return null;
         }
 
+        /*
         String randomId = UUID.randomUUID().toString();
         post.setId(randomId);
+        */
 
         user.getPosts().add(post);
 

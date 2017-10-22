@@ -39,10 +39,14 @@ public class PostService {
 
     private SecureRandom random = new SecureRandom();
 
-    public Post addPost(String postName) {
+    public Post addPost() {
+        return addPost();
+    }
 
-        String postId = String.valueOf(uids.getAndIncrement());
-        Post newPost = new Post(postName);
+    public Post addPost(String title, String text, int submittedBy) {
+
+        Post newPost = new Post(title, text, submittedBy);
+        int postId = uids.getAndIncrement();
         newPost.setId(postId);
 
         return newPost;
