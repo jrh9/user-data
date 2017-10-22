@@ -3,6 +3,7 @@ package com.jrh.user.data.service;
 import com.jrh.user.data.model.Post;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.UUID;
 public class PostService {
 
     private static List<Post> posts = new ArrayList<>();
+    private static AtomicInteger uids = new AtomicInteger(0); // Unique ID generator
 
     static {
         //Initialize posts and Posts
@@ -39,10 +41,9 @@ public class PostService {
 
     public Post addPost(String postName) {
 
-        String randomId = UUID.randomUUID().toString();
+        String postId = String.valueOf(uids.getAndIncrement());
         Post newPost = new Post(postName);
-
-        newPost.setId(randomId);
+        newPost.setId(postId);
 
         return newPost;
     }
